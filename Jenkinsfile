@@ -36,8 +36,8 @@ pipeline {
                         ${scannerHome}/bin/sonar-scanner \
                           -Dsonar.projectKey=Trend-v1.0 \
                           -Dsonar.projectName=Trend-v1.0 \
-                          -Dsonar.sources=. \
-                          -Dsonar.java.binaries=target
+                          -Dsonar.sources=dist \
+                          
                         """
                     }
                 }
