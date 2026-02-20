@@ -14,7 +14,7 @@ pipeline {
 
         /* ===================== CHECKOUT ===================== */
         stage('Checkout Code') {
-            
+            agent {label 'workernode1'}
             steps {
                 cleanWs()
                 git branch: 'main', url: env.GIT_REPO
