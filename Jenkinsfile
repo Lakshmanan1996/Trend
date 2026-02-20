@@ -37,7 +37,7 @@ pipeline {
                           -Dsonar.projectKey=Trend-v1.0 \
                           -Dsonar.projectName=Trend-v1.0 \
                           -Dsonar.sources=dist \
-                          
+                          -Dsonar.sourceEncoding=UTF-8
                         """
                     }
                 }
