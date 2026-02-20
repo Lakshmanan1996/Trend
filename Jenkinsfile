@@ -45,7 +45,7 @@ pipeline {
 
         /* ===================== QUALITY GATE ===================== */
         stage('Quality Gate') {
-            label {'workernode1'}
+            agent {label 'workernode1'}
             steps {
                 timeout(time: 2, unit: 'MINUTES') {
                     waitForQualityGate abortPipeline: false
