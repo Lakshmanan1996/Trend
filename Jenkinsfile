@@ -1,5 +1,5 @@
 pipeline {
-    agent any
+    agent none
 
     
 
@@ -27,7 +27,7 @@ pipeline {
 
         /* ===================== SONARQUBE ===================== */
         stage('SonarQube Analysis') {
-            
+            agent {label 'workernode1'}
             steps {
                 script {
                     def scannerHome = tool 'SonarQubeScanner'
@@ -45,7 +45,7 @@ pipeline {
 
         /* ===================== QUALITY GATE ===================== */
         stage('Quality Gate') {
-            
+            label{'workernode1'}
             steps {
                 timeout(time: 2, unit: 'MINUTES') {
                     waitForQualityGate abortPipeline: false
