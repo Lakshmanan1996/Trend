@@ -74,7 +74,7 @@ pipeline {
                   trivy image --exit-code 0 --severity HIGH,CRITICAL \
                     ${DOCKERHUB_USER}/${IMAGE_NAME}:${BUILD_NUMBER}
                 '''
-                echo "✅ Trivy scan completed"
+                echo "✅ Trivy scan completed."
             }
         }
 
