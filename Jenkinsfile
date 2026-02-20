@@ -55,7 +55,7 @@ pipeline {
 
         /* ===================== DOCKER BUILD ===================== */
         stage('Docker Build') {
-            
+            agent {label 'workernode1'}
             steps {
                 unstash 'source'
                 sh '''
