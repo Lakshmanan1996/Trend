@@ -5,7 +5,7 @@ pipeline {
 
     environment {
         DOCKERHUB_USER = "lakshmanan1996"
-        GIT_REPO = ""
+        GIT_REPO = "https://github.com/Lakshmanan1996/Trend.git"
         SERVICE_NAME = "Trend"
         IMAGE_NAME = "Trend-v1.0"
     }
@@ -17,7 +17,7 @@ pipeline {
             
             steps {
                 cleanWs()
-                git branch: 'master', url: env.GIT_REPO
+                git branch: 'main', url: env.GIT_REPO
 
                 stash name: 'source',
                       includes: '**/*',
@@ -27,15 +27,15 @@ pipeline {
 
         /* ===================== SONARQUBE ===================== */
         stage('SonarQube Analysis') {
-            agent { label 'node2' }
+            
             steps {
                 script {
                     def scannerHome = tool 'SonarQubeScanner'
                     withSonarQubeEnv('sonarqube') {
                         sh """
                         ${scannerHome}/bin/sonar-scanner \
-                          -Dsonar.projectKey=internet-banking \
-                          -Dsonar.projectName=internet-banking \
+                          -Dsonar.projectKey=Trend-v1.0 \
+                          -Dsonar.projectName=Trend-v1.0 \
                           -Dsonar.sources=src \
                           -Dsonar.java.binaries=target
                         """
