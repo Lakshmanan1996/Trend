@@ -7,7 +7,7 @@ pipeline {
         DOCKERHUB_USER = "lakshmanan1996"
         GIT_REPO = "https://github.com/Lakshmanan1996/Trend.git"
         SERVICE_NAME = "Trend"
-        IMAGE_NAME = "Trend-v1.0"
+        IMAGE_NAME = "trend-v1.0"
     }
 
     stages {
@@ -68,7 +68,7 @@ pipeline {
 
         /* ===================== TRIVY ===================== */
         stage('Trivy Scan') {
-            
+            agent {label 'workernode1'}
             steps {
                 sh '''
                   trivy image --exit-code 0 --severity HIGH,CRITICAL \
@@ -80,7 +80,7 @@ pipeline {
 
         /* ===================== PUSH TO DOCKER HUB ===================== */
         stage('Push Image') {
-            
+            agent {label 'workernode1'}
             steps {
                 withCredentials([usernamePassword(
                     credentialsId: 'dockerhub-creds',
@@ -107,4 +107,3 @@ pipeline {
         }
     }
 }
-
